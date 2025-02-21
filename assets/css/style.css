@@ -214,7 +214,6 @@ nav {
 /* ----- WRAPPER DESIGN ----- */
 .wrapper {
     padding-inline: 10vw;
-    overflow-x: hidden;
 }
 
 /* ----- FEATURED BOX ----- */
@@ -223,7 +222,7 @@ nav {
     display: flex;
     height: 100vh;
     min-height: 700px;
-    overflow-x: hidden;
+    gap: 30px;
 }
 
 /* ----- FEATURED TEXT BOX ----- */
@@ -239,49 +238,38 @@ nav {
 }
 
 .featured-text-card span {
-    background: var(--accent-color);
-    color: var(--color-white);
-    padding: 12px 24px;
-    font-size: 18px;
-    border-radius: 12px;
-    font-weight: 600;
+    color: var(--text-color);
+    font-size: 2rem;
+    font-weight: 500;
     letter-spacing: 1px;
-    box-shadow: 0 4px 15px var(--shadow-color);
-    transition: all 0.3s ease;
-    text-transform: uppercase;
 }
 
-.featured-text-card span:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px var(--shadow-color);
-    background: var(--accent-hover);
+.featured-name h1 {
+    font-size: 5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0.5rem 0;
 }
 
-.featured-name {
-    margin-top: 2rem;
+.featured-role {
+    margin-bottom: 2rem;
 }
 
-.featured-name p {
-    font-size: 2.5rem;
-    font-weight: 600;
+.featured-role p {
+    font-size: 2rem;
+    font-weight: 500;
     color: var(--text-color);
 }
 
-.featured-name .typedText {
-    color: var(--third-color);
-    font-weight: 700;
-}
-
-.featured-name .highlight {
+.featured-role .typedText {
     color: var(--accent-color);
 }
 
-.featured-text-info {
-    font-size: 16px;
-    margin-bottom: 30px;
-    color: var(--text-color-second);
+.featured-text-info p {
+    font-size: 1.2rem;
     line-height: 1.8;
-    margin-top: 1.5rem;
+    color: var(--text-color-second);
+    margin-bottom: 2rem;
 }
 
 .featured-text-btn {
@@ -335,24 +323,24 @@ nav {
 /* ----- FEATURED IMAGE BOX ----- */
 .featured-image {
     display: flex;
-    justify-content: right;
+    justify-content: center;
     align-content: center;
     min-height: 80vh;
-    width: 50%;
+    width: 40%;
 }
 
 .image {
     margin: auto 0;
-    width: 350px;
-    height: 350px;
+    width: 400px;
+    height: 400px;
     border-radius: 55% 45% 55% 45%;
     overflow: hidden;
     animation: imgFloat 7s ease-in-out infinite;
 }
 
 .image img {
-    width: 350px;
-    height: 350px;
+    width: 400px;
+    height: 400px;
     object-fit: cover;
 }
 
@@ -727,32 +715,28 @@ footer {
 
     .featured-box {
         flex-direction: column;
-        justify-content: flex-start;
-        height: auto;
-        min-height: 100vh;
-        padding-top: 100px;
+        justify-content: center;
+        height: 100vh;
     }
 
     .featured-text {
         width: 100%;
         order: 2;
-        justify-content: flex-start;
-        min-height: auto;
-        padding: 20px 0;
+        justify-content: center;
+        align-content: flex-start;
+        min-height: 60vh;
     }
 
     .social_icons {
         margin-top: 2em;
-        margin-bottom: 2em;
     }
 
     .featured-image {
         order: 1;
         justify-content: center;
-        min-height: auto;
+        min-height: 150px;
         width: 100%;
-        margin-top: 0;
-        padding: 20px 0;
+        margin-top: 65px;
     }
 
     .image,
@@ -787,18 +771,13 @@ footer {
         width: 80%;
     }
 
-    .featured-text-card {
-        margin-top: 20px;
-    }
-
     .featured-text-card span {
         font-size: 16px;
         padding: 10px 20px;
     }
 
     .featured-name p {
-        font-size: 1.5rem;
-        line-height: 1.3;
+        font-size: 2rem;
     }
 
     .featured-text-info {
@@ -867,24 +846,6 @@ footer {
 
     .timeline-content p {
         font-size: 13px;
-    }
-
-    .wrapper {
-        padding-inline: 5vw;
-    }
-
-    .featured-text-card span {
-        display: inline-block;
-        margin-bottom: 10px;
-    }
-
-    .featured-name {
-        margin-top: 1rem;
-    }
-
-    .featured-name p {
-        font-size: 1.5rem;
-        line-height: 1.3;
     }
 }
 
