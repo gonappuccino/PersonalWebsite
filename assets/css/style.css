@@ -15,6 +15,7 @@
     /* One Light green */
     --first-color: #4078f2;
     /* One Light blue */
+    /**/
     --first-color-hover: #5689f5;
     /* Lighter blue */
     --second-color: #986801;
@@ -697,10 +698,6 @@ footer {
         display: none;
     }
 
-    .nav-menu.responsive {
-        left: 0;
-    }
-
     .nav-menu {
         position: fixed;
         top: 80px;
@@ -708,12 +705,12 @@ footer {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(20px);
+        background: var(--color-white);
         width: 100%;
         min-height: 450px;
         height: 90vh;
         transition: .3s;
+        box-shadow: 0 2px 10px var(--first-shadow-color);
     }
 
     .nav_menu_list {
@@ -784,25 +781,111 @@ footer {
         width: 80%;
     }
 
+    .featured-text-card span {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .featured-name p {
+        font-size: 2rem;
+    }
+
+    .featured-text-info {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+
+    .featured-text-btn {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .featured-text-btn .btn {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 /* ----- MEDIA QUERY == 540px / RESPONSIVE ----- */
-
 @media only screen and (max-width: 540px) {
-    .featured-name {
-        font-size: 40px;
+    .nav-logo .nav-name {
+        font-size: 24px;
+    }
+
+    .featured-text-card {
+        width: 100%;
+        text-align: center;
     }
 
     .project-box {
-        width: 100%;
+        padding: 20px;
+        height: auto;
+        min-height: 200px;
     }
 
-    .form-inputs {
-        flex-direction: column;
+    .contact-info {
+        padding: 20px;
+        height: auto;
+        min-height: 250px;
     }
 
-    .input-field {
-        width: 100%;
+    .contact-info p {
+        font-size: 14px;
+    }
+
+    .skills-box {
+        padding: 15px;
+    }
+
+    .skills-list span {
+        font-size: 12px;
+        padding: 2px 8px;
+    }
+
+    .timeline-content {
+        padding: 15px;
+    }
+
+    .timeline-content h3 {
+        font-size: 16px;
+    }
+
+    .timeline-content h4 {
+        font-size: 14px;
+    }
+
+    .timeline-content p {
+        font-size: 13px;
+    }
+}
+
+/* ----- MEDIA QUERY == 400px / RESPONSIVE ----- */
+@media only screen and (max-width: 400px) {
+    .nav-logo .nav-name {
+        font-size: 20px;
+    }
+
+    .featured-text-card span {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .featured-name p {
+        font-size: 1.8rem;
+    }
+
+    .social_icons {
+        gap: 20px;
+    }
+
+    .icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .footer_menu_list a {
+        margin-inline: 10px;
+        font-size: 14px;
     }
 }
 
