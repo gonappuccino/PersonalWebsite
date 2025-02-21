@@ -214,6 +214,7 @@ nav {
 /* ----- WRAPPER DESIGN ----- */
 .wrapper {
     padding-inline: 10vw;
+    overflow-x: hidden;
 }
 
 /* ----- FEATURED BOX ----- */
@@ -222,6 +223,7 @@ nav {
     display: flex;
     height: 100vh;
     min-height: 700px;
+    overflow-x: hidden;
 }
 
 /* ----- FEATURED TEXT BOX ----- */
@@ -725,28 +727,32 @@ footer {
 
     .featured-box {
         flex-direction: column;
-        justify-content: center;
-        height: 100vh;
+        justify-content: flex-start;
+        height: auto;
+        min-height: 100vh;
+        padding-top: 100px;
     }
 
     .featured-text {
         width: 100%;
         order: 2;
-        justify-content: center;
-        align-content: flex-start;
-        min-height: 60vh;
+        justify-content: flex-start;
+        min-height: auto;
+        padding: 20px 0;
     }
 
     .social_icons {
         margin-top: 2em;
+        margin-bottom: 2em;
     }
 
     .featured-image {
         order: 1;
         justify-content: center;
-        min-height: 150px;
+        min-height: auto;
         width: 100%;
-        margin-top: 65px;
+        margin-top: 0;
+        padding: 20px 0;
     }
 
     .image,
@@ -781,13 +787,18 @@ footer {
         width: 80%;
     }
 
+    .featured-text-card {
+        margin-top: 20px;
+    }
+
     .featured-text-card span {
         font-size: 16px;
         padding: 10px 20px;
     }
 
     .featured-name p {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        line-height: 1.3;
     }
 
     .featured-text-info {
@@ -856,6 +867,24 @@ footer {
 
     .timeline-content p {
         font-size: 13px;
+    }
+
+    .wrapper {
+        padding-inline: 5vw;
+    }
+
+    .featured-text-card span {
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    .featured-name {
+        margin-top: 1rem;
+    }
+
+    .featured-name p {
+        font-size: 1.5rem;
+        line-height: 1.3;
     }
 }
 
