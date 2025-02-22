@@ -262,7 +262,7 @@ nav {
 }
 
 .featured-role .typedText {
-    color: var(--accent-color);
+    color: var(--third-color);
 }
 
 .featured-text-info p {
@@ -470,61 +470,154 @@ h3 {
 }
 
 /* ----- PROJECTS BOX ----- */
-.project-container {
+.project-filters {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
+    justify-content: center;
     gap: 20px;
-    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 8px;
+    background: var(--color-white);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.filter-btn.active {
+    background: var(--first-color);
+    color: var(--color-white);
+}
+
+.filter-btn:hover {
+    background: var(--first-color-hover);
+    color: var(--color-white);
+}
+
+.project-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    justify-items: start;
 }
 
 .project-box {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 30%;
-    height: 250px;
     background: var(--color-white);
-    border-radius: 20px;
-    box-shadow: 1px 8px 10px 2px var(--first-shadow-color);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    transition: all 0.3s ease;
+}
+
+.project-box:hover {
+    transform: translateY(-5px);
+}
+
+.project-box h3 {
+    color: var(--text-color);
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.project-box p {
+    color: var(--text-color-second);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.project-tags span {
+    background: var(--body-color);
+    color: var(--text-color-second);
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.project-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--first-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: inherit;
+}
+
+.project-link:hover {
+    color: var(--first-color-hover);
+}
+
+.project-link.demo-link {
+    color: var(--third-color);
+    /* Using the red accent color for demo links */
+}
+
+.project-link.demo-link:hover {
+    color: var(--second-color);
+    /* Using the orange/gold color on hover */
+}
+
+.project-link i {
+    font-size: 18px;
+}
+
+/* Project Filtering Animation */
+.project-box {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+.project-box.hide {
+    opacity: 0;
+    transform: scale(0.8);
+    height: 0;
+    padding: 0;
+    margin: 0;
     overflow: hidden;
 }
 
-.project-box>i {
-    font-size: 50px;
-    color: #00B5E7;
-    margin-bottom: 25px;
-}
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
+    .project-filters {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
 
-.project-box label {
-    font-size: 15px;
-    color: #777;
-}
+    .filter-btn {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
 
-.project-box::after,
-.contact-info::after {
-    content: "";
-    position: absolute;
-    bottom: -100%;
-    background: var(--second-color);
-    width: 100%;
-    height: 100%;
-    transition: .4s;
-    z-index: 1;
-}
-
-.project-box:hover.project-box::after,
-.contact-info:hover.contact-info::after {
-    bottom: 0;
-}
-
-.project-box:hover.project-box i,
-.project-box:hover.project-box>h3,
-.project-box:hover.project-box>label {
-    color: var(--color-white);
-    z-index: 2;
+    .project-container {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
 }
 
 /* ----- CONTACT BOX ----- */
@@ -1035,4 +1128,144 @@ footer {
 /* ----- Remove cat widget section entirely ----- */
 .cat-widget {
     display: none;
+}
+
+/* ----- PROJECT MODAL ----- */
+.project-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background: var(--body-color);
+    width: 90%;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    border-bottom: 1px solid var(--shadow-color);
+}
+
+.modal-header h2 {
+    color: var(--text-color);
+    font-size: 1.8rem;
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.project-demo {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.project-demo iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.demo-controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+.demo-control-btn {
+    padding: 8px 15px;
+    background: var(--first-color);
+    color: var(--color-white);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.demo-control-btn:hover {
+    background: var(--first-color-hover);
+}
+
+.project-description h3 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.project-description p {
+    color: var(--text-color-second);
+    line-height: 1.6;
+}
+
+/* Make project boxes clickable */
+.project-box {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+/* Modal Responsive Design */
+@media only screen and (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 20px auto;
+    }
+
+    .modal-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
 }

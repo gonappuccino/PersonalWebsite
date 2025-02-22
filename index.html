@@ -215,21 +215,71 @@
                 <div class="top-header">
                     <h1>Projects</h1>
                 </div>
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="ai">AI/ML</button>
+                    <button class="filter-btn" data-filter="web">Web Dev</button>
+                    <button class="filter-btn" data-filter="quant">Quant</button>
+                </div>
                 <div class="project-container">
-                    <div class="project-box">
-                        <i class="uil uil-briefcase-alt"></i>
-                        <h3>Completed</h3>
-                        <label>15+ Finished Projects</label>
+                    <div class="project-box" data-category="ai" onclick="openProjectModal('neural')">
+                        <h3>Neural Style Transfer</h3>
+                        <p>Implementation of neural style transfer algorithm using PyTorch. Combines content and style
+                            images to create artistic transformations.</p>
+                        <div class="project-tags">
+                            <span>PyTorch</span>
+                            <span>Computer Vision</span>
+                            <span>Deep Learning</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link" onclick="event.stopPropagation();">
+                                <i class="uil uil-github"></i> View Code
+                            </a>
+                            <button class="project-link demo-link"
+                                onclick="event.stopPropagation(); openProjectModal('neural')">
+                                <i class="uil uil-video"></i> Watch Demo
+                            </button>
+                        </div>
                     </div>
-                    <div class="project-box">
-                        <i class="uil uil-users-alt"></i>
-                        <h3>Clients</h3>
-                        <label>25+ Happy Clients</label>
+
+                    <div class="project-box" data-category="quant">
+                        <h3>Algorithmic Trading Bot</h3>
+                        <p>Automated trading system using machine learning for market prediction and statistical
+                            arbitrage strategies.</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>ML</span>
+                            <span>Finance</span>
+                        </div>
+                        <a href="https://github.com/username/project" target="_blank" class="project-link">
+                            <i class="uil uil-github"></i> View Project
+                        </a>
                     </div>
-                    <div class="project-box">
-                        <i class="uil uil-award"></i>
-                        <h3>Experience</h3>
-                        <label>7+ Years in the field</label>
+
+                    <div class="project-box" data-category="web">
+                        <h3>Real-time Chat Application</h3>
+                        <p>Full-stack chat application with real-time messaging, user authentication, and message
+                            history.</p>
+                        <div class="project-tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>WebSocket</span>
+                        </div>
+                        <a href="https://github.com/username/project" target="_blank" class="project-link">
+                            <i class="uil uil-github"></i> View Project
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Modals -->
+                <div id="neuralModal" class="project-modal">
+                    <div class="modal-content">
+                        <span class="close-modal" onclick="closeProjectModal('neural')">&times;</span>
+                        <h2>Neural Style Transfer Demo</h2>
+                        <div class="video-container">
+                            <iframe src="" data-src="YOUR_VIDEO_URL" allowfullscreen></iframe>
+                        </div>
+                        <p>Detailed explanation of the project and its features...</p>
                     </div>
                 </div>
             </section>

@@ -125,3 +125,91 @@ function toggleTheme() {
     setTheme(localStorage.getItem('theme'));  // 저장된 사용자 설정 유지
   }
 })();
+
+/* ----- PROJECT FILTERING ----- */
+const filterButtons = document.querySelectorAll('.filter-btn');
+const projectBoxes = document.querySelectorAll('.project-box');
+
+filterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Remove active class from all buttons
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    // Add active class to clicked button
+    button.classList.add('active');
+
+    const filterValue = button.getAttribute('data-filter');
+
+    projectBoxes.forEach(box => {
+      if (filterValue === 'all' || box.getAttribute('data-category') === filterValue) {
+        box.classList.remove('hide');
+      } else {
+        box.classList.add('hide');
+      }
+    });
+  });
+});
+
+/* ----- PROJECT MODAL FUNCTIONS ----- */
+function openProjectModal(projectId) {
+  const modal = document.getElementById(projectId + 'Modal');
+  if (modal) {
+    modal.style.display = 'block';
+    // Load video only when modal opens
+    const iframe = modal.querySelector('iframe');
+    if (iframe && !iframe.src) {
+      iframe.src = iframe.dataset.src;
+    }
+  }
+}
+
+function closeProjectModal(projectId) {
+  const modal = document.getElementById(projectId + 'Modal');
+  if (modal) {
+    modal.style.display = 'none';
+    // Stop video when closing modal
+    const iframe = modal.querySelector('iframe');
+    if (iframe) {
+      iframe.src = '';
+    }
+  }
+}
+
+// Close modal when clicking outside
+window.onclick = function (event) {
+  if (event.target.classList.contains('project-modal')) {
+    event.target.style.display = 'none';
+    const iframe = event.target.querySelector('iframe');
+    if (iframe) {
+      iframe.src = '';
+    }
+  }
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') {
+    const modals = document.getElementsByClassName('project-modal');
+    Array.from(modals).forEach(modal => {
+      if (modal.style.display === 'block') {
+        const iframe = modal.querySelector('iframe');
+        if (iframe) {
+          iframe.src = '';
+        }
+        modal.style.display = 'none';
+      }
+    });
+  }
+});
+
+/* ----- DEMO CONTROLS ----- */
+function toggleDemoFullscreen(demoContainer) {
+  if (!document.fullscreenElement) {
+    demoContainer.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+function reloadDemo(demoFrame) {
+  demoFrame.src = demoFrame.src;
+}
