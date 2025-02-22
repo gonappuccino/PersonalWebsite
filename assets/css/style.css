@@ -1273,9 +1273,11 @@ footer {
 /* 모바일 반응형 수정 */
 @media screen and (max-width: 768px) {
     .home {
-        padding: 100px 3% 0;
-        height: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 100px 20px 50px;
         min-height: 100vh;
+        overflow: hidden;
     }
 
     .featured-name h1 {
@@ -1284,17 +1286,19 @@ footer {
     }
 
     .home-img {
+        order: -1;
+        /* 이미지를 맨 위로 */
+        width: 200px;
+        height: 200px;
+        margin: 0 auto 30px;
         position: relative;
-        width: 100%;
-        height: auto;
-        max-width: 350px;
-        margin: 30px auto;
     }
 
     .home-img img {
         width: 100%;
-        height: auto;
-        object-fit: contain;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
     }
 
     /* About 섹션과의 간격 조정 */
@@ -1305,32 +1309,59 @@ footer {
 
     /* 컨텐츠 겹침 방지를 위한 추가 여백 */
     .section {
-        padding: 50px 3%;
-        margin: 20px 0;
+        padding: 60px 20px;
+        margin: 0;
+        overflow: visible;
     }
 
     /* 텍스트와 이미지 간격 조정 */
     .home-content {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+    }
+
+    .header-text {
+        margin-top: 20px;
+    }
+
+    .header-text h1 {
+        font-size: 2rem;
+        line-height: 1.3;
+        margin-bottom: 10px;
+    }
+
+    /* 프로젝트 섹션 */
+    .portfolio-items {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 20px;
+        gap: 30px;
+        padding: 20px 0;
+    }
+
+    .portfolio-item {
+        width: 100%;
+        margin-bottom: 20px;
     }
 }
 
 /* 더 작은 화면에 대한 추가 조정 */
 @media screen and (max-width: 480px) {
-    .featured-name h1 {
-        font-size: 2.5rem;
+    .home {
+        padding: 80px 15px 30px;
     }
 
     .home-img {
-        max-width: 280px;
+        width: 150px;
+        height: 150px;
     }
 
-    .section {
-        padding: 40px 3%;
+    .header-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .portfolio-items {
+        padding: 10px 0;
     }
 }
 
@@ -1496,4 +1527,12 @@ footer {
         height: auto;
         min-height: 100vh;
     }
+}
+
+/* 스크롤 개선 */
+html,
+body {
+    overflow-x: hidden;
+    position: relative;
+    width: 100%;
 }
