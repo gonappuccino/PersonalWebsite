@@ -1333,3 +1333,167 @@ footer {
         padding: 40px 3%;
     }
 }
+
+/* 태블릿과 모바일을 위한 반응형 디자인 */
+@media screen and (max-width: 1024px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    /* 기본 레이아웃 조정 */
+    .container {
+        padding: 0 10px;
+    }
+
+    /* 헤더 영역 */
+    .header-text {
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .header-text h1 {
+        font-size: 2rem;
+    }
+
+    .featured-name h1 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+        margin: 15px 0;
+    }
+
+    /* 홈 섹션 */
+    .home {
+        flex-direction: column;
+        height: auto;
+        padding-top: 80px;
+    }
+
+    .home-content {
+        width: 100%;
+        order: 2;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .home-img {
+        width: 100%;
+        order: 1;
+        margin: 20px auto;
+        max-width: 280px;
+    }
+
+    .home-img img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* About 섹션 */
+    .about-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .about-img {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .about-text {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* 스킬 섹션 */
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    /* 프로젝트 섹션 */
+    .portfolio-items {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* 연락처 섹션 */
+    .contact-info {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* 네비게이션 */
+    .nav-button {
+        display: none;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        padding: 20px;
+        background: var(--body-color);
+        transition: 0.3s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+}
+
+/* 더 작은 모바일 화면 */
+@media screen and (max-width: 480px) {
+
+    /* 헤더 텍스트 */
+    .header-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .featured-name h1 {
+        font-size: 2.2rem;
+    }
+
+    /* 스킬 섹션 */
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* 푸터 */
+    .footer-menu {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    /* 섹션 간격 */
+    .section {
+        padding: 40px 0;
+    }
+
+    /* 마진과 패딩 조정 */
+    .container {
+        padding: 0 8px;
+    }
+}
+
+/* 높이 기반 반응형 */
+@media screen and (max-height: 700px) {
+    .home {
+        height: auto;
+        min-height: 100vh;
+    }
+}
