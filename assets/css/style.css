@@ -247,7 +247,7 @@ nav {
 .featured-name h1 {
     font-size: 5rem;
     font-weight: 700;
-    color: var(--text-color);
+    color: var(--first-color);
     margin: 0.5rem 0;
 }
 
