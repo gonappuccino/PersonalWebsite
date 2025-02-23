@@ -1904,46 +1904,42 @@ footer {
 /* 모바일에서 프로젝트 섹션 스크롤 트리거 범위 조정 */
 @media screen and (max-width: 768px) {
     .portfolio {
-        margin-top: 0;
+        margin-top: -100px;
         padding-top: 20px;
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
     }
 
     .portfolio .container {
         margin-top: 0;
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
     }
 
     .portfolio-items {
         margin-top: 30px;
         opacity: 1 !important;
         transform: translateY(0) !important;
-        transition: none !important;
+        visibility: visible !important;
     }
 
+    /* 각 프로젝트 아이템의 애니메이션 조정 */
     .portfolio-item {
         opacity: 1 !important;
-        transform: none !important;
+        transform: translateY(0) !important;
+        visibility: visible !important;
         transition: none !important;
-        animation: none !important;
     }
 
-    /* 스크롤 트리거 효과 제거 */
+    /* 스크롤 트리거 영역 확장 */
     .portfolio.section {
         min-height: auto;
-        visibility: visible !important;
-        transform: none !important;
-        transition: none !important;
+        visibility: visible;
+        opacity: 1;
+        transform: none;
     }
 
-    /* 모든 스크롤 관련 클래스의 효과 제거 */
-    [data-scroll] {
+    /* reveal 클래스 관련 모든 애니메이션 비활성화 */
+    .reveal {
         opacity: 1 !important;
-        transform: none !important;
+        transform: translateY(0) !important;
+        visibility: visible !important;
         transition: none !important;
     }
 }
