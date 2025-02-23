@@ -127,42 +127,26 @@ function toggleTheme() {
 })();
 
 /* ----- PROJECT FILTERING ----- */
-function initPortfolioFilter() {
-  const isMobile = window.innerWidth <= 768;
-  const filterButtons = document.querySelectorAll('.portfolio-filter button');
-  const portfolioItems = document.querySelectorAll('.portfolio-item');
+const filterButtons = document.querySelectorAll('.filter-btn');
+const projectBoxes = document.querySelectorAll('.project-box');
 
-  // 모바일이 아닐 때만 필터 기능 활성화
-  if (!isMobile) {
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // 활성 버튼 표시
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+filterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Remove active class from all buttons
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    // Add active class to clicked button
+    button.classList.add('active');
 
-        // 필터링
-        const filterValue = button.getAttribute('data-filter');
+    const filterValue = button.getAttribute('data-filter');
 
-        portfolioItems.forEach(item => {
-          if (filterValue === 'all' || item.classList.contains(filterValue)) {
-            item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
-          }
-        });
-      });
+    projectBoxes.forEach(box => {
+      if (filterValue === 'all' || box.getAttribute('data-category') === filterValue) {
+        box.classList.remove('hide');
+      } else {
+        box.classList.add('hide');
+      }
     });
-  }
-}
-
-// 윈도우 리사이즈 시 필터 기능 재초기화
-window.addEventListener('resize', () => {
-  initPortfolioFilter();
-});
-
-// 페이지 로드 시 초기화
-document.addEventListener('DOMContentLoaded', () => {
-  initPortfolioFilter();
+  });
 });
 
 /* ----- PROJECT MODAL FUNCTIONS ----- */
