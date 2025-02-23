@@ -214,25 +214,37 @@ function reloadDemo(demoFrame) {
   demoFrame.src = demoFrame.src;
 }
 
-function initPortfolioFilter() {
-  const isMobile = window.innerWidth <= 768;
-  const filterButtons = document.querySelectorAll('.portfolio-filter button');
-  const portfolioItems = document.querySelectorAll('.portfolio-item');
+// 모바일 체크 함수
+function isMobile() {
+  return window.innerWidth <= 768;
+}
 
-  if (isMobile) {
-    // 모바일: 모든 프로젝트 표시
-    portfolioItems.forEach(item => {
-      item.style.display = 'block';
-      item.style.opacity = '1';
-      item.style.visibility = 'visible';
-    });
+// 모든 프로젝트 즉시 표시 함수
+function showAllProjects() {
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+  portfolioItems.forEach(item => {
+    item.style.cssText = `
+            display: block !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            transition: none !important;
+        `;
+  });
+}
+
+function initPortfolioFilter() {
+  // 모바일이면 즉시 모든 프로젝트 표시
+  if (isMobile()) {
+    showAllProjects();
     return;
   }
 
-  // 데스크톱: 필터 기능
+  // 데스크톱 필터 기능
+  const filterButtons = document.querySelectorAll('.portfolio-filter button');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-      // 활성 버튼 표시
       filterButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
 
@@ -253,12 +265,19 @@ function initPortfolioFilter() {
   });
 }
 
-// 페이지 로드 시 초기화
-document.addEventListener('DOMContentLoaded', initPortfolioFilter);
+// 페이지 로드 시 즉시 실행
+document.addEventListener('DOMContentLoaded', () => {
+  if (isMobile()) {
+    showAllProjects();
+  }
+  initPortfolioFilter();
+});
 
-// 리사이즈 시 초기화 (디바운스 적용)
-let resizeTimer;
+// 리사이즈 시 즉시 실행
 window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(initPortfolioFilter, 250);
+  if (isMobile()) {
+    showAllProjects();
+  } else {
+    initPortfolioFilter();
+  }
 });
