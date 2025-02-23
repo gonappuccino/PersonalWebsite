@@ -219,19 +219,37 @@ function initPortfolioFilter() {
   const filterButtons = document.querySelectorAll('.portfolio-filter button');
   const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-  // 초기 상태: 모든 항목 표시
-  portfolioItems.forEach(item => {
-    item.style.display = 'block';
-    item.style.opacity = '1';
-    item.style.visibility = 'visible';
-  });
-
-  // 모바일에서는 필터 기능 중단
+  // 모바일 환경
   if (isMobile) {
+    // 필터 버튼 숨기기
+    const filterContainer = document.querySelector('.portfolio-filter');
+    if (filterContainer) {
+      filterContainer.style.display = 'none';
+    }
+
+    // 모든 프로젝트 표시
+    portfolioItems.forEach(item => {
+      item.style.display = 'block';
+      item.style.opacity = '1';
+      item.style.visibility = 'visible';
+    });
     return;
   }
 
-  // 데스크톱 필터 기능
+  // 데스크톱 환경
+  // 필터 버튼 표시
+  const filterContainer = document.querySelector('.portfolio-filter');
+  if (filterContainer) {
+    filterContainer.style.display = 'flex';
+  }
+
+  // 초기 상태: 'all' 필터 활성화
+  const allButton = document.querySelector('[data-filter="all"]');
+  if (allButton) {
+    allButton.classList.add('active');
+  }
+
+  // 필터 기능
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
       // 활성 버튼 표시
@@ -240,7 +258,6 @@ function initPortfolioFilter() {
 
       const filterValue = button.getAttribute('data-filter');
 
-      // 즉시 필터링 적용 (애니메이션 제거)
       portfolioItems.forEach(item => {
         if (filterValue === 'all' || item.classList.contains(filterValue)) {
           item.style.display = 'block';
