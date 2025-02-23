@@ -127,45 +127,33 @@ function toggleTheme() {
 })();
 
 /* ----- PROJECT FILTERING ----- */
-const filterButtons = document.querySelectorAll('.filter-btn');
-const projectBoxes = document.querySelectorAll('.project-box');
+function initializePortfolioFilter() {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-filterButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    // Remove active class from all buttons
-    filterButtons.forEach(btn => btn.classList.remove('active'));
-    // Add active class to clicked button
-    button.classList.add('active');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // 활성 버튼 스타일 변경
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
 
-    const filterValue = button.getAttribute('data-filter');
-    let hasVisibleProjects = false;
+      const filterValue = btn.getAttribute('data-filter');
 
-    projectBoxes.forEach(box => {
-      // 먼저 모든 트랜지션 효과 제거
-      box.style.transition = 'none';
-      box.style.display = 'block';
-
-      if (filterValue === 'all' || box.getAttribute('data-category') === filterValue) {
-        box.classList.remove('hide');
-        hasVisibleProjects = true;
-      } else {
-        box.classList.add('hide');
-      }
-
-      // Trigger reflow
-      void box.offsetWidth;
-
-      // 트랜지션 다시 활성화
-      box.style.transition = 'all 0.3s ease';
+      portfolioItems.forEach(item => {
+        if (filterValue === 'all' || item.classList.contains(filterValue)) {
+          item.classList.remove('hide');
+          item.classList.add('show');
+        } else {
+          item.classList.remove('show');
+          item.classList.add('hide');
+        }
+      });
     });
-
-    // 컨테이너 높이 조정
-    const container = document.querySelector('.project-container');
-    if (container) {
-      container.style.minHeight = hasVisibleProjects ? '400px' : '0';
-    }
   });
-});
+}
+
+// DOM 로드 시 초기화
+document.addEventListener('DOMContentLoaded', initializePortfolioFilter);
 
 /* ----- PROJECT MODAL FUNCTIONS ----- */
 function openProjectModal(projectId) {
