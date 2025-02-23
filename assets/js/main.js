@@ -127,51 +127,45 @@ function toggleTheme() {
 })();
 
 /* ----- PROJECT FILTERING ----- */
-function initializePortfolioFilter() {
-  // 모바일 체크
-  const isMobile = window.innerWidth <= 768;
+const filterButtons = document.querySelectorAll('.filter-btn');
+const projectBoxes = document.querySelectorAll('.project-box');
 
-  if (!isMobile) {  // 모바일이 아닐 때만 필터링 기능 활성화
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
+filterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Remove active class from all buttons
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    // Add active class to clicked button
+    button.classList.add('active');
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+    const filterValue = button.getAttribute('data-filter');
+    let hasVisibleProjects = false;
 
-        const filterValue = btn.getAttribute('data-filter');
+    projectBoxes.forEach(box => {
+      // 먼저 모든 트랜지션 효과 제거
+      box.style.transition = 'none';
+      box.style.display = 'block';
 
-        portfolioItems.forEach(item => {
-          if (filterValue === 'all' || item.classList.contains(filterValue)) {
-            item.classList.remove('hide');
-            item.classList.add('show');
-          } else {
-            item.classList.remove('show');
-            item.classList.add('hide');
-          }
-        });
-      });
+      if (filterValue === 'all' || box.getAttribute('data-category') === filterValue) {
+        box.classList.remove('hide');
+        hasVisibleProjects = true;
+      } else {
+        box.classList.add('hide');
+      }
+
+      // Trigger reflow
+      void box.offsetWidth;
+
+      // 트랜지션 다시 활성화
+      box.style.transition = 'all 0.3s ease';
     });
-  }
-}
 
-// 윈도우 리사이즈 시 체크
-window.addEventListener('resize', () => {
-  const isMobile = window.innerWidth <= 768;
-  const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-  if (isMobile) {
-    // 모바일에서는 모든 항목 표시
-    portfolioItems.forEach(item => {
-      item.classList.remove('hide');
-      item.classList.add('show');
-    });
-  }
+    // 컨테이너 높이 조정
+    const container = document.querySelector('.project-container');
+    if (container) {
+      container.style.minHeight = hasVisibleProjects ? '400px' : '0';
+    }
+  });
 });
-
-// DOM 로드 시 초기화
-document.addEventListener('DOMContentLoaded', initializePortfolioFilter);
 
 /* ----- PROJECT MODAL FUNCTIONS ----- */
 function openProjectModal(projectId) {
@@ -237,3 +231,50 @@ function toggleDemoFullscreen(demoContainer) {
 function reloadDemo(demoFrame) {
   demoFrame.src = demoFrame.src;
 }
+
+// 프로젝트 필터링 기능
+function initializePortfolioFilter() {
+  // 모바일 체크
+  const isMobile = window.innerWidth <= 768;
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+  // 모바일이 아닐 때만 필터링 기능 활성화
+  if (!isMobile) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        portfolioItems.forEach(item => {
+          if (filterValue === 'all' || item.classList.contains(filterValue)) {
+            item.classList.remove('hide');
+            item.classList.add('show');
+          } else {
+            item.classList.remove('show');
+            item.classList.add('hide');
+          }
+        });
+      });
+    });
+  }
+}
+
+// 리사이즈 이벤트 처리
+window.addEventListener('resize', () => {
+  const isMobile = window.innerWidth <= 768;
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+  if (isMobile) {
+    // 모바일에서는 모든 항목 표시
+    portfolioItems.forEach(item => {
+      item.classList.remove('hide');
+      item.classList.add('show');
+    });
+  }
+});
+
+// DOM 로드 시 초기화
+document.addEventListener('DOMContentLoaded', initializePortfolioFilter);
