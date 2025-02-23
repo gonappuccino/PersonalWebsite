@@ -36,38 +36,12 @@ var typingEffect = new Typed(".typedText", {
 })
 
 /* ----- ## -- SCROLL REVEAL ANIMATION -- ## ----- */
-function initScrollReveal() {
-  const isMobile = window.innerWidth <= 768;
-  const sr = ScrollReveal({
-    origin: 'top',
-    distance: '60px',
-    duration: 2500,
-    delay: 400,
-    reset: false // 한 번만 애니메이션 실행
-  });
-
-  // 모바일에서는 다른 설정 적용
-  if (isMobile) {
-    sr.reveal('.portfolio-item', {
-      origin: 'bottom',
-      distance: '30px',
-      duration: 1000,
-      delay: 200,
-      interval: 100,
-      viewFactor: 0.1,  // 요소의 10%만 보여도 애니메이션 시작 (기존보다 빠르게)
-      viewOffset: {
-        top: 50,     // 상단 여백 축소
-        bottom: 50   // 하단 여백 축소
-      }
-    });
-  } else {
-    // 데스크톱 설정
-    sr.reveal('.portfolio-item', {
-      interval: 200,
-      viewFactor: 0.3  // 데스크톱에서는 30% 보여야 애니메이션 시작
-    });
-  }
-}
+const sr = ScrollReveal({
+  origin: 'top',
+  distance: '80px',
+  duration: 2000,
+  reset: true
+})
 
 /* -- HOME -- */
 sr.reveal('.featured-text-card', {})
@@ -259,11 +233,13 @@ function showAllProjects() {
 }
 
 function initPortfolioFilter() {
+  // 모바일이면 즉시 모든 프로젝트 표시
   if (isMobile()) {
     showAllProjects();
     return;
   }
 
+  // 데스크톱 필터 기능
   const filterButtons = document.querySelectorAll('.portfolio-filter button');
   const portfolioItems = document.querySelectorAll('.portfolio-item');
 
@@ -289,20 +265,19 @@ function initPortfolioFilter() {
   });
 }
 
-// 초기화 및 이벤트 리스너
+// 페이지 로드 시 즉시 실행
 document.addEventListener('DOMContentLoaded', () => {
-  initScrollReveal();
   if (isMobile()) {
     showAllProjects();
   }
   initPortfolioFilter();
 });
 
+// 리사이즈 시 즉시 실행
 window.addEventListener('resize', () => {
   if (isMobile()) {
     showAllProjects();
   } else {
     initPortfolioFilter();
   }
-  initScrollReveal();  // 리사이즈 시 ScrollReveal 재초기화
 });
