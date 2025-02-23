@@ -119,11 +119,14 @@ i {
 /* ------- BASE -------- */
 body {
     background: var(--body-color);
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .container {
-    width: 100%;
+    overflow-x: hidden;
     position: relative;
+    width: 100%;
 }
 
 /* ----- NAVIGATION BAR ----- */
@@ -808,34 +811,58 @@ footer {
 
     .featured-box {
         flex-direction: column;
-        justify-content: center;
-        height: 100vh;
-    }
-
-    .featured-text {
-        width: 100%;
-        order: 2;
-        justify-content: center;
-        align-content: flex-start;
-        min-height: 60vh;
-    }
-
-    .social_icons {
-        margin-top: 2em;
+        justify-content: flex-start;
+        height: auto;
+        padding-top: 100px;
+        min-height: 100vh;
+        gap: 20px;
     }
 
     .featured-image {
         order: 1;
         justify-content: center;
-        min-height: 150px;
+        min-height: auto;
         width: 100%;
-        margin-top: 65px;
+        margin-bottom: 30px;
     }
 
-    .image,
+    .featured-text {
+        order: 2;
+        width: 100%;
+        text-align: center;
+        padding: 0 20px;
+    }
+
+    .image {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+    }
+
     .image img {
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
+    }
+
+    .featured-text-card span {
+        font-size: 1rem;
+    }
+
+    .featured-name h1 {
+        font-size: 2.5rem;
+    }
+
+    .featured-text-info {
+        margin: 20px 0;
+    }
+
+    .featured-text-btn {
+        justify-content: center;
+    }
+
+    .social_icons {
+        justify-content: center;
+        margin-top: 30px;
     }
 
     .row {
@@ -1527,12 +1554,4 @@ footer {
         height: auto;
         min-height: 100vh;
     }
-}
-
-/* 스크롤 개선 */
-html,
-body {
-    overflow-x: hidden;
-    position: relative;
-    width: 100%;
 }
