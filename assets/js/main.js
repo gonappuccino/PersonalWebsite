@@ -213,3 +213,49 @@ function toggleDemoFullscreen(demoContainer) {
 function reloadDemo(demoFrame) {
   demoFrame.src = demoFrame.src;
 }
+
+function initPortfolioFilter() {
+  const isMobile = window.innerWidth <= 768;
+  const filterButtons = document.querySelectorAll('.portfolio-filter button');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+  // 모바일일 때는 모든 항목 표시
+  if (isMobile) {
+    portfolioItems.forEach(item => {
+      item.style.display = 'block';
+      item.style.opacity = '1';
+      item.style.visibility = 'visible';
+    });
+    return;  // 모바일에서는 여기서 함수 종료
+  }
+
+  // 데스크톱 필터 기능
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      const filterValue = button.getAttribute('data-filter');
+
+      portfolioItems.forEach(item => {
+        if (filterValue === 'all' || item.classList.contains(filterValue)) {
+          item.style.display = 'block';
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.visibility = 'visible';
+          }, 300);
+        } else {
+          item.style.opacity = '0';
+          item.style.visibility = 'hidden';
+          setTimeout(() => {
+            item.style.display = 'none';
+          }, 300);
+        }
+      });
+    });
+  });
+}
+
+// 페이지 로드와 리사이즈 시 초기화
+document.addEventListener('DOMContentLoaded', initPortfolioFilter);
+window.addEventListener('resize', initPortfolioFilter);

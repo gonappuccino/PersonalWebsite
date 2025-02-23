@@ -1884,18 +1884,24 @@ footer {
 @media screen and (max-width: 768px) {
     .portfolio-filter {
         display: none;
-        /* 모바일에서 필터 숨기기 */
     }
 
     .portfolio-items {
         grid-template-columns: 1fr;
-        /* 모바일에서 한 열로 표시 */
         gap: 20px;
     }
 
-    /* 모바일에서는 모든 항목 표시 */
+    /* 모바일에서 모든 포트폴리오 아이템 표시 */
     .portfolio-item {
         display: block !important;
-        /* 모바일에서 모든 항목 강제 표시 */
+        /* 강제 표시 */
+        opacity: 1 !important;
+        /* 투명도 100% */
+        visibility: visible !important;
+        /* 가시성 보장 */
+        transform: none !important;
+        /* 변형 효과 제거 */
+        position: relative !important;
+        /* 포지션 고정 */
     }
 }
