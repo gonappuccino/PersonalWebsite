@@ -138,32 +138,14 @@ filterButtons.forEach(button => {
     button.classList.add('active');
 
     const filterValue = button.getAttribute('data-filter');
-    let hasVisibleProjects = false;
 
     projectBoxes.forEach(box => {
-      // 먼저 모든 트랜지션 효과 제거
-      box.style.transition = 'none';
-      box.style.display = 'block';
-
       if (filterValue === 'all' || box.getAttribute('data-category') === filterValue) {
         box.classList.remove('hide');
-        hasVisibleProjects = true;
       } else {
         box.classList.add('hide');
       }
-
-      // Trigger reflow
-      void box.offsetWidth;
-
-      // 트랜지션 다시 활성화
-      box.style.transition = 'all 0.3s ease';
     });
-
-    // 컨테이너 높이 조정
-    const container = document.querySelector('.project-container');
-    if (container) {
-      container.style.minHeight = hasVisibleProjects ? '400px' : '0';
-    }
   });
 });
 
