@@ -1560,6 +1560,36 @@ footer {
         align-items: center;
         gap: 20px;
     }
+
+    .filter-btns {
+        display: none;
+        /* 모바일에서 필터 버튼 숨김 */
+    }
+
+    .portfolio-items {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 10px;
+    }
+
+    .portfolio-item {
+        opacity: 1;
+        transform: none;
+        transition: all 0.3s ease;
+        width: 100%;
+        margin: 0;
+        display: block !important;
+        /* 모든 항목 강제 표시 */
+    }
+
+    /* 필터 관련 클래스 무시 */
+    .portfolio-item.hide,
+    .portfolio-item.show {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
 }
 
 /* 더 작은 모바일 화면 */
