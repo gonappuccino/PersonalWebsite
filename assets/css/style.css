@@ -1900,3 +1900,31 @@ footer {
         position: relative !important;
     }
 }
+
+/* 모바일에서 프로젝트 섹션 스크롤 트리거 범위 조정 */
+@media screen and (max-width: 768px) {
+    .portfolio {
+        margin-top: -100px;
+        /* 위쪽 여백 감소 */
+        padding-top: 20px;
+        /* 상단 패딩 감소 */
+    }
+
+    .portfolio .container {
+        margin-top: 0;
+        /* 컨테이너 상단 여백 제거 */
+    }
+
+    .portfolio-items {
+        margin-top: 30px;
+        /* 아이템 상단 여백 조정 */
+    }
+
+    /* 스크롤 트리거 영역 조정 */
+    .portfolio.section {
+        min-height: auto;
+        /* 최소 높이 자동 조정 */
+        padding: 40px 0;
+        /* 섹션 패딩 감소 */
+    }
+}
