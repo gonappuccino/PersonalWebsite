@@ -282,37 +282,63 @@ window.addEventListener('resize', () => {
   }
 });
 
-// 스크롤 애니메이션 함수
-function reveal() {
+// 요소가 화면에 보이는지 확인하는 함수
+function isElementInViewport(el) {
+  const rect = el.getBoundingClientRect();
+  const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+  // 화면의 90% 지점부터 요소를 표시하기 시작
+  const triggerPoint = windowHeight * 0.9;
+
+  return rect.top <= triggerPoint;
+}
+
+// 요소들을 표시하는 함수
+function hide() {
   const reveals = document.querySelectorAll('.reveal');
-  const windowHeight = window.innerHeight;
   const isMobile = window.innerWidth <= 768;
 
-  reveals.forEach((element) => {
-    const elementTop = element.getBoundingClientRect().top;
-    // 트리거 지점을 더 아래로 조정 (더 일찍 나타나도록)
-    const elementVisible = windowHeight * 0.8; // 화면 높이의 80% 지점에서 트리거
+  reveals.forEach(element => {
+    // 이미 활성화된 요소는 건너뛰기
+    if (element.classList.contains('active')) {
+      return;
+    }
 
-    if (elementTop < windowHeight - elementVisible) {
-      if (!element.classList.contains('active')) {
-        element.classList.add('active');
+    if (isElementInViewport(element)) {
+      // 요소가 보이는 영역에 들어오면 활성화
+      element.classList.add('active');
 
-        // 즉각적인 표시를 위한 스타일 직접 적용
-        element.style.opacity = '1';
-        element.style.transform = 'translateY(0)';
-        element.style.visibility = 'visible';
+      // 스타일 직접 적용
+      element.style.cssText = `
+                opacity: 1;
+                transform: translateY(0);
+                visibility: visible;
+                transition: all 0.3s ease;
+            `;
+
+      // 모바일에서는 더 빠른 애니메이션
+      if (isMobile) {
+        element.style.transition = 'all 0.2s ease';
       }
     }
   });
 }
 
-// 스크롤 이벤트를 더 자주 체크
-window.addEventListener('scroll', reveal);
+// 스크롤 이벤트 처리
+window.addEventListener('scroll', () => {
+  requestAnimationFrame(hide);
+});
 
-// 페이지 로드 시 여러 번 체크하여 초기 요소들 표시 보장
+// 페이지 로드 시 처리
 document.addEventListener('DOMContentLoaded', () => {
-  reveal();
-  // 여러 번 체크하여 확실히 표시
-  setTimeout(reveal, 100);
-  setTimeout(reveal, 300);
+  // 초기 로드 시 여러 번 체크
+  hide();
+  setTimeout(hide, 100);
+  setTimeout(hide, 300);
+  setTimeout(hide, 500);
+});
+
+// 리사이즈 시 처리
+window.addEventListener('resize', () => {
+  requestAnimationFrame(hide);
 });
