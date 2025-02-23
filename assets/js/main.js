@@ -38,9 +38,10 @@ var typingEffect = new Typed(".typedText", {
 /* ----- ## -- SCROLL REVEAL ANIMATION -- ## ----- */
 const sr = ScrollReveal({
   origin: 'top',
-  distance: '80px',
-  duration: 2000,
-  reset: true
+  distance: '60px',
+  duration: 1000,
+  delay: 200,
+  reset: false  // 한 번만 애니메이션 실행
 })
 
 /* -- HOME -- */
@@ -237,15 +238,16 @@ function initPortfolioFilter() {
   const filterButtons = document.querySelectorAll('.portfolio-filter button');
   const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-  // ScrollReveal 초기화 해제 함수
-  function resetScrollReveal() {
-    portfolioItems.forEach(item => {
-      sr.clean(item);  // ScrollReveal 효과 제거
-    });
-  }
+  // 초기 ScrollReveal 적용
+  sr.reveal('.portfolio-item', {
+    interval: 200,
+    scale: 1,
+    viewFactor: 0.2,
+    mobile: true
+  });
 
   if (isMobile) {
-    // 모바일: 모든 프로젝트 표시
+    // 모바일에서는 모든 항목 표시
     portfolioItems.forEach(item => {
       item.style.display = 'block';
       item.style.opacity = '1';
@@ -254,44 +256,50 @@ function initPortfolioFilter() {
     return;
   }
 
-  // 데스크톱: 필터 기능
+  // 데스크톱 필터 기능
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
-      // ScrollReveal 효과 초기화
-      resetScrollReveal();
-
       // 활성 버튼 표시
       filterButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
 
       const filterValue = button.getAttribute('data-filter');
 
+      // 필터링 및 애니메이션 적용
       portfolioItems.forEach(item => {
         if (filterValue === 'all' || item.classList.contains(filterValue)) {
           item.style.display = 'block';
-          item.style.opacity = '1';
-          item.style.visibility = 'visible';
+          setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+            item.style.visibility = 'visible';
+          }, 100);
         } else {
-          item.style.display = 'none';
           item.style.opacity = '0';
+          item.style.transform = 'translateY(20px)';
           item.style.visibility = 'hidden';
+          setTimeout(() => {
+            item.style.display = 'none';
+          }, 300);
         }
-      });
-
-      // 필터링 후 ScrollReveal 재적용
-      sr.reveal('.portfolio-item:not([style*="display: none"])', {
-        interval: 200,
-        mobile: true,
-        viewFactor: 0.3
       });
     });
   });
 }
 
 // 페이지 로드 시 초기화
-document.addEventListener('DOMContentLoaded', initPortfolioFilter);
+document.addEventListener('DOMContentLoaded', () => {
+  initPortfolioFilter();
+  // 초기 애니메이션 트리거
+  sr.reveal('.portfolio-item', {
+    interval: 200,
+    scale: 1,
+    viewFactor: 0.2,
+    mobile: true
+  });
+});
 
-// 리사이즈 시 초기화
+// 리사이즈 핸들러
 let resizeTimer;
 window.addEventListener('resize', () => {
   clearTimeout(resizeTimer);
