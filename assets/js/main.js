@@ -290,30 +290,29 @@ function reveal() {
 
   reveals.forEach((element) => {
     const elementTop = element.getBoundingClientRect().top;
-    const elementVisible = 150;
+    // 트리거 지점을 더 아래로 조정 (더 일찍 나타나도록)
+    const elementVisible = windowHeight * 0.8; // 화면 높이의 80% 지점에서 트리거
 
-    // 요소가 화면 안에 들어왔는지 확인
     if (elementTop < windowHeight - elementVisible) {
-      // 아직 active 클래스가 없는 경우에만 애니메이션 적용
       if (!element.classList.contains('active')) {
         element.classList.add('active');
+
+        // 즉각적인 표시를 위한 스타일 직접 적용
         element.style.opacity = '1';
         element.style.transform = 'translateY(0)';
+        element.style.visibility = 'visible';
       }
     }
   });
 }
 
-// 스크롤 이벤트에 디바운스 적용
-let scrollTimer;
-window.addEventListener('scroll', () => {
-  clearTimeout(scrollTimer);
-  scrollTimer = setTimeout(reveal, 10);
-});
+// 스크롤 이벤트를 더 자주 체크
+window.addEventListener('scroll', reveal);
 
-// 페이지 로드 시 초기 실행
+// 페이지 로드 시 여러 번 체크하여 초기 요소들 표시 보장
 document.addEventListener('DOMContentLoaded', () => {
   reveal();
-  // 초기 로드 시 화면에 보이는 요소들 체크
+  // 여러 번 체크하여 확실히 표시
   setTimeout(reveal, 100);
+  setTimeout(reveal, 300);
 });

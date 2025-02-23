@@ -1964,38 +1964,47 @@ footer {
 .reveal {
     position: relative;
     opacity: 0;
-    transform: translateY(50px);
-    transition: all 0.5s ease;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    will-change: transform, opacity;
 }
 
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
+    transition: all 0.3s ease;
 }
 
 @media screen and (max-width: 768px) {
     .reveal {
         opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.5s ease;
-        will-change: transform, opacity;
-        /* 성능 최적화 */
+        transform: translateY(15px);
+        transition: all 0.2s ease;
     }
 
     .reveal.active {
         opacity: 1;
         transform: translateY(0);
+        transition: all 0.2s ease;
     }
 
     /* 프로젝트 아이템 특별 처리 */
     .portfolio-item {
         opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.5s ease;
+        transform: translateY(15px);
+        transition: all 0.2s ease;
+        will-change: transform, opacity;
     }
 
     .portfolio-item.active {
         opacity: 1;
         transform: translateY(0);
+    }
+
+    /* 스크롤 성능 최적화 */
+    .portfolio-items {
+        will-change: transform;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
     }
 }
