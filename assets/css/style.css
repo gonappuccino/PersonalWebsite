@@ -2070,3 +2070,66 @@ footer {
     transform: translateY(-5px);
     transition: transform 0.3s ease;
 }
+
+/* 태블릿과 작은 노트북 화면 대응 */
+@media screen and (max-width: 1024px) {
+    .header-text {
+        padding-top: 120px;
+        /* nav-bar 높이보다 더 큰 패딩 */
+        margin-top: 0;
+    }
+
+    .home {
+        min-height: 100vh;
+        padding-top: 80px;
+        /* nav-bar 높이만큼 패딩 추가 */
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+}
+
+/* 아이패드/태블릿 전용 */
+@media screen and (max-width: 820px) {
+    .header-text {
+        padding-top: 100px;
+    }
+
+    .header-text h1 {
+        font-size: 2.5rem;
+        /* 글자 크기 조정 */
+    }
+
+    .header-text .name {
+        font-size: 3.5rem;
+    }
+}
+
+/* 13인치 노트북 전용 */
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+    .header-text {
+        padding-top: 100px;
+    }
+
+    .home {
+        min-height: 100vh;
+        padding-top: 60px;
+    }
+}
+
+/* 모바일 대응 유지 */
+@media screen and (max-width: 768px) {
+    .header-text {
+        padding-top: 90px;
+        text-align: center;
+    }
+
+    .header-text h1 {
+        font-size: 2rem;
+    }
+
+    .header-text .name {
+        font-size: 3rem;
+    }
+}
