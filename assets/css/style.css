@@ -1645,14 +1645,18 @@ footer {
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px;
-        margin-bottom: 2rem;
-        padding: 0 15px;
+        padding: 10px 5px;
+        margin-bottom: 20px;
     }
 
     /* 필터 버튼 */
     .filter-btn {
         padding: 8px 15px;
         font-size: 0.9rem;
+        white-space: nowrap;
+        width: auto;
+        min-width: fit-content;
+        margin: 0;
     }
 
     /* 숨겨진 아이템 처리 */
@@ -1678,7 +1682,7 @@ footer {
     }
 }
 
-/* 더 작은 화면 최적화 */
+/* 더 작은 화면에 대한 추가 조정 */
 @media screen and (max-width: 480px) {
     .portfolio-items {
         gap: 1.5rem;
