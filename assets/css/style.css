@@ -2133,3 +2133,100 @@ footer {
         font-size: 3rem;
     }
 }
+
+/* 기본 헤더 스타일 */
+.header-text {
+    padding-top: 150px;
+    /* 기본 상단 여백 증가 */
+    margin-top: 20px;
+    position: relative;
+    z-index: 1;
+    /* 레이어 순서 보장 */
+}
+
+/* 큰 화면 (데스크톱) */
+@media screen and (min-width: 1367px) {
+    .header-text {
+        padding-top: 160px;
+    }
+}
+
+/* 13인치 노트북 화면 */
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+    .header-text {
+        padding-top: 140px;
+        margin-top: 30px;
+    }
+
+    .home {
+        min-height: 100vh;
+        padding-top: 80px;
+    }
+}
+
+/* 태블릿과 작은 노트북 */
+@media screen and (min-width: 769px) and (max-width: 1023px) {
+    .header-text {
+        padding-top: 160px;
+        /* 여백 더 증가 */
+        margin-top: 20px;
+    }
+
+    .home {
+        min-height: 100vh;
+        padding-top: 60px;
+    }
+
+    .header-text h1 {
+        font-size: 2.8rem;
+    }
+
+    .header-text .name {
+        font-size: 4rem;
+    }
+}
+
+/* 아이패드/태블릿 */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .header-text {
+        padding-top: 140px;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .header-text h1 {
+        font-size: 2.5rem;
+    }
+
+    .header-text .name {
+        font-size: 3.5rem;
+    }
+}
+
+/* 모바일 */
+@media screen and (max-width: 480px) {
+    .header-text {
+        padding-top: 120px;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .header-text h1 {
+        font-size: 2rem;
+    }
+
+    .header-text .name {
+        font-size: 3rem;
+    }
+}
+
+/* 추가 안전 장치 */
+.nav-bar {
+    z-index: 100;
+    /* 네비게이션 바가 항상 위에 오도록 */
+}
+
+.home {
+    position: relative;
+    z-index: 1;
+}
