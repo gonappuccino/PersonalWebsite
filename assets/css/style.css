@@ -1477,8 +1477,12 @@ footer {
 
     /* 프로젝트 섹션 */
     .portfolio-items {
+        display: grid;
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 2rem;
+        padding: 1rem 0;
+        min-height: 400px;
+        /* 최소 높이 설정 */
     }
 
     /* 연락처 섹션 */
@@ -1546,6 +1550,20 @@ footer {
     .container {
         padding: 0 8px;
     }
+
+    .portfolio-items {
+        gap: 1.5rem;
+        min-height: 300px;
+    }
+
+    .portfolio-item {
+        min-height: 200px;
+    }
+
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
 }
 
 /* 높이 기반 반응형 */
@@ -1553,5 +1571,85 @@ footer {
     .home {
         height: auto;
         min-height: 100vh;
+    }
+}
+
+/* 프로젝트 섹션 모바일 최적화 */
+@media screen and (max-width: 768px) {
+
+    /* 프로젝트 컨테이너 */
+    .portfolio-items {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1rem 0;
+        min-height: 400px;
+        /* 최소 높이 설정 */
+    }
+
+    /* 프로젝트 아이템 */
+    .portfolio-item {
+        width: 100%;
+        height: auto;
+        min-height: 250px;
+        margin: 0;
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.3s ease;
+    }
+
+    /* 필터 버튼 컨테이너 */
+    .portfolio-filter {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 2rem;
+        padding: 0 15px;
+    }
+
+    /* 필터 버튼 */
+    .filter-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    /* 숨겨진 아이템 처리 */
+    .portfolio-item.hide {
+        display: none;
+        height: 0;
+        padding: 0;
+        margin: 0;
+        opacity: 0;
+    }
+
+    /* 보여지는 아이템 처리 */
+    .portfolio-item.show {
+        display: block;
+        height: auto;
+        opacity: 1;
+    }
+
+    /* 프로젝트 섹션 전체 */
+    .portfolio.section {
+        min-height: 100vh;
+        padding-bottom: 4rem;
+    }
+}
+
+/* 더 작은 화면 최적화 */
+@media screen and (max-width: 480px) {
+    .portfolio-items {
+        gap: 1.5rem;
+        min-height: 300px;
+    }
+
+    .portfolio-item {
+        min-height: 200px;
+    }
+
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
     }
 }
