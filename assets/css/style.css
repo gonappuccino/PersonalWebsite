@@ -1905,9 +1905,9 @@ footer {
 @media screen and (max-width: 768px) {
     .portfolio {
         margin-top: -100px;
-        /* 위쪽 여백 감소 */
+        /* 상단 여백 줄임 */
         padding-top: 20px;
-        /* 상단 패딩 감소 */
+        /* 상단 패딩 조정 */
     }
 
     .portfolio .container {
@@ -1920,11 +1920,11 @@ footer {
         /* 아이템 상단 여백 조정 */
     }
 
-    /* 스크롤 트리거 영역 조정 */
+    /* 스크롤 트리거 영역 확장 */
     .portfolio.section {
         min-height: auto;
         /* 최소 높이 자동 조정 */
-        padding: 40px 0;
-        /* 섹션 패딩 감소 */
+        visibility: visible;
+        /* 가시성 보장 */
     }
 }
