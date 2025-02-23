@@ -2008,3 +2008,65 @@ footer {
         backface-visibility: hidden;
     }
 }
+
+/* 포트폴리오 아이템 기본 스타일 */
+.portfolio-item {
+    opacity: 0;
+    /* ScrollReveal이 처리할 초기 상태 */
+    transform: translateY(0);
+    transition: all 0.3s ease;
+    will-change: transform, opacity;
+    /* 성능 최적화 */
+}
+
+/* 활성화된 포트폴리오 아이템 */
+.portfolio-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 모바일 최적화 */
+@media screen and (max-width: 768px) {
+    .portfolio-items {
+        gap: 20px;
+    }
+
+    .portfolio-item {
+        transition: all 0.2s ease;
+        /* 모바일에서 더 빠른 애니메이션 */
+    }
+
+    /* 모바일에서의 ScrollReveal 애니메이션 최적화 */
+    .portfolio-item[data-sr-complete] {
+        transform: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    /* 성능 최적화를 위한 추가 속성 */
+    .portfolio-items {
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        perspective: 1000px;
+        transform-style: preserve-3d;
+    }
+}
+
+/* ScrollReveal 애니메이션 부드럽게 */
+.sr-only {
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* 필터링 애니메이션 */
+.portfolio-item {
+    transition: transform 0.3s ease,
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+/* 호버 효과 최적화 */
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
