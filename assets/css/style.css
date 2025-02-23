@@ -1592,6 +1592,64 @@ footer {
     }
 }
 
+/* 프로젝트 필터 모바일 최적화 */
+@media screen and (max-width: 768px) {
+    .filter-btns {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 2rem;
+        padding: 0 10px;
+    }
+
+    .filter-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        width: auto;
+        min-width: 80px;
+        text-align: center;
+    }
+
+    .portfolio-items {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 10px;
+    }
+
+    .portfolio-item {
+        opacity: 1;
+        transform: none;
+        transition: all 0.3s ease;
+        width: 100%;
+        margin: 0;
+    }
+
+    .portfolio-item.hide {
+        display: none;
+    }
+
+    .portfolio-item.show {
+        display: block;
+        animation: fadeIn 0.5s ease;
+    }
+}
+
+/* 애니메이션 정의 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* 더 작은 모바일 화면 */
 @media screen and (max-width: 480px) {
 
@@ -1796,29 +1854,5 @@ footer {
     .filter-btn {
         padding: 6px 12px;
         font-size: 0.8rem;
-    }
-}
-
-/* 모바일에서 프로젝트 필터 버튼 숨기기 */
-@media screen and (max-width: 768px) {
-    .filter-btns {
-        display: none;
-        /* 모바일에서 필터 버튼 숨김 */
-    }
-
-    .portfolio-items {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 0 10px;
-    }
-
-    .portfolio-item {
-        opacity: 1;
-        transform: none;
-        width: 100%;
-        margin: 0;
-        display: block !important;
-        /* 모든 프로젝트 항상 표시 */
     }
 }
