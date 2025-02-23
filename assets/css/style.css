@@ -1943,3 +1943,28 @@ footer {
         transition: none !important;
     }
 }
+
+@media screen and (max-width: 768px) {
+
+    /* 모바일에서 필터 버튼 기본 숨김 */
+    .portfolio-filter button {
+        display: none !important;
+    }
+
+    /* ALL 버튼만 표시 */
+    .portfolio-filter button[data-filter="all"] {
+        display: inline-block !important;
+        pointer-events: none !important;
+        /* 클릭 비활성화 */
+        background: var(--primary-color) !important;
+        /* 활성 상태 스타일 */
+        color: white !important;
+    }
+
+    /* 필터 컨테이너 정렬 */
+    .portfolio-filter {
+        display: flex !important;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+}
