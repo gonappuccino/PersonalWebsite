@@ -618,18 +618,6 @@ h3 {
     padding: 0;
     margin: 0;
     pointer-events: none;
-    display: none;
-    /* 숨김 처리 */
-}
-
-.project-box.show {
-    display: block;
-    /* 보임 처리 */
-    opacity: 1;
-    transform: scale(1);
-    height: auto;
-    padding: 20px;
-    margin: 10px 0;
 }
 
 /* Responsive Design */
@@ -1657,18 +1645,14 @@ footer {
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px;
-        padding: 10px 5px;
-        margin-bottom: 20px;
+        margin-bottom: 2rem;
+        padding: 0 15px;
     }
 
     /* 필터 버튼 */
     .filter-btn {
         padding: 8px 15px;
         font-size: 0.9rem;
-        white-space: nowrap;
-        width: auto;
-        min-width: fit-content;
-        margin: 0;
     }
 
     /* 숨겨진 아이템 처리 */
@@ -1694,7 +1678,7 @@ footer {
     }
 }
 
-/* 더 작은 화면에 대한 추가 조정 */
+/* 더 작은 화면 최적화 */
 @media screen and (max-width: 480px) {
     .portfolio-items {
         gap: 1.5rem;
@@ -1766,53 +1750,5 @@ footer {
     .filter-btn {
         padding: 6px 12px;
         font-size: 0.8rem;
-    }
-}
-
-/* 프로젝트 필터 모바일 최적화 */
-@media screen and (max-width: 768px) {
-    .portfolio-filter {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 2rem;
-        padding: 0 15px;
-    }
-
-    .filter-item {
-        padding: 8px 15px;
-        font-size: 0.9rem;
-        white-space: nowrap;
-        margin: 5px;
-        background: var(--color-white);
-        border-radius: 20px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .filter-item.active {
-        background: var(--first-color);
-        color: var(--color-white);
-    }
-
-    /* 필터 컨테이너가 화면을 벗어나지 않도록 */
-    .portfolio-filters-container {
-        width: 100%;
-        overflow-x: hidden;
-        padding: 10px 0;
-    }
-}
-
-/* 더 작은 화면에 대한 추가 최적화 */
-@media screen and (max-width: 480px) {
-    .filter-item {
-        padding: 6px 12px;
-        font-size: 0.85rem;
-    }
-
-    .portfolio-filter {
-        gap: 8px;
-        padding: 0 10px;
     }
 }
