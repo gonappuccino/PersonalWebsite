@@ -216,7 +216,9 @@ nav {
 
 /* ----- WRAPPER DESIGN ----- */
 .wrapper {
-    padding-inline: 10vw;
+    padding-inline: 5vw;
+    overflow: hidden;
+    width: 100%;
 }
 
 /* ----- FEATURED BOX ----- */
@@ -378,7 +380,9 @@ nav {
 
 /* ----- MAIN BOX ----- */
 .section {
-    padding-block: 5em;
+    padding-block: 3em;
+    width: 100%;
+    overflow: hidden;
 }
 
 .row {
@@ -507,7 +511,8 @@ h3 {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
     padding: 20px;
-    justify-items: start;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .project-box {
@@ -620,6 +625,32 @@ h3 {
     .project-container {
         grid-template-columns: 1fr;
         padding: 10px;
+        gap: 20px;
+    }
+
+    .project-box {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    /* 모바일에서 스크롤 다운 버튼 숨기기 */
+    .scroll-btn {
+        display: none;
+    }
+
+    /* 프로젝트 박스 내부 여백 조정 */
+    .project-box {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    /* 프로젝트 설명 텍스트 크기 조정 */
+    .project-box h3 {
+        font-size: 18px;
+    }
+
+    .project-box p {
+        font-size: 14px;
     }
 }
 
