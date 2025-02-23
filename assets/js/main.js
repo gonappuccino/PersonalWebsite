@@ -127,27 +127,51 @@ function toggleTheme() {
 })();
 
 /* ----- PROJECT FILTERING ----- */
-const filterButtons = document.querySelectorAll('.filter-btn');
-const projectBoxes = document.querySelectorAll('.project-box');
+function initializePortfolioFilter() {
+  // 모바일 체크
+  const isMobile = window.innerWidth <= 768;
 
-filterButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    // Remove active class from all buttons
-    filterButtons.forEach(btn => btn.classList.remove('active'));
-    // Add active class to clicked button
-    button.classList.add('active');
+  if (!isMobile) {  // 모바일이 아닐 때만 필터링 기능 활성화
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-    const filterValue = button.getAttribute('data-filter');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
 
-    projectBoxes.forEach(box => {
-      if (filterValue === 'all' || box.getAttribute('data-category') === filterValue) {
-        box.classList.remove('hide');
-      } else {
-        box.classList.add('hide');
-      }
+        const filterValue = btn.getAttribute('data-filter');
+
+        portfolioItems.forEach(item => {
+          if (filterValue === 'all' || item.classList.contains(filterValue)) {
+            item.classList.remove('hide');
+            item.classList.add('show');
+          } else {
+            item.classList.remove('show');
+            item.classList.add('hide');
+          }
+        });
+      });
     });
-  });
+  }
+}
+
+// 윈도우 리사이즈 시 체크
+window.addEventListener('resize', () => {
+  const isMobile = window.innerWidth <= 768;
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+  if (isMobile) {
+    // 모바일에서는 모든 항목 표시
+    portfolioItems.forEach(item => {
+      item.classList.remove('hide');
+      item.classList.add('show');
+    });
+  }
 });
+
+// DOM 로드 시 초기화
+document.addEventListener('DOMContentLoaded', initializePortfolioFilter);
 
 /* ----- PROJECT MODAL FUNCTIONS ----- */
 function openProjectModal(projectId) {
