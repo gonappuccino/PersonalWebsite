@@ -127,28 +127,27 @@ function toggleTheme() {
 })();
 
 /* ----- PROJECT FILTERING ----- */
-function initializePortfolioFilter() {
-  // 모바일 체크
+function initPortfolioFilter() {
   const isMobile = window.innerWidth <= 768;
+  const filterButtons = document.querySelectorAll('.portfolio-filter button');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-  if (!isMobile) {  // 모바일이 아닐 때만 필터링 기능 활성화
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const portfolioItems = document.querySelectorAll('.portfolio-item');
+  // 모바일이 아닐 때만 필터 기능 활성화
+  if (!isMobile) {
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // 활성 버튼 표시
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const filterValue = btn.getAttribute('data-filter');
+        // 필터링
+        const filterValue = button.getAttribute('data-filter');
 
         portfolioItems.forEach(item => {
           if (filterValue === 'all' || item.classList.contains(filterValue)) {
-            item.classList.remove('hide');
-            item.classList.add('show');
+            item.style.display = 'block';
           } else {
-            item.classList.remove('show');
-            item.classList.add('hide');
+            item.style.display = 'none';
           }
         });
       });
@@ -156,22 +155,15 @@ function initializePortfolioFilter() {
   }
 }
 
-// 윈도우 리사이즈 시 체크
+// 윈도우 리사이즈 시 필터 기능 재초기화
 window.addEventListener('resize', () => {
-  const isMobile = window.innerWidth <= 768;
-  const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-  if (isMobile) {
-    // 모바일에서는 모든 항목 표시
-    portfolioItems.forEach(item => {
-      item.classList.remove('hide');
-      item.classList.add('show');
-    });
-  }
+  initPortfolioFilter();
 });
 
-// DOM 로드 시 초기화
-document.addEventListener('DOMContentLoaded', initializePortfolioFilter);
+// 페이지 로드 시 초기화
+document.addEventListener('DOMContentLoaded', () => {
+  initPortfolioFilter();
+});
 
 /* ----- PROJECT MODAL FUNCTIONS ----- */
 function openProjectModal(projectId) {

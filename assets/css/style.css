@@ -1856,3 +1856,46 @@ footer {
         font-size: 0.8rem;
     }
 }
+
+/* 데스크톱 스타일 */
+.portfolio-filter {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.portfolio-filter button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background: var(--hover-color);
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.portfolio-filter button.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* 모바일에서 필터 숨기기 */
+@media screen and (max-width: 768px) {
+    .portfolio-filter {
+        display: none;
+        /* 모바일에서 필터 숨기기 */
+    }
+
+    .portfolio-items {
+        grid-template-columns: 1fr;
+        /* 모바일에서 한 열로 표시 */
+        gap: 20px;
+    }
+
+    /* 모바일에서는 모든 항목 표시 */
+    .portfolio-item {
+        display: block !important;
+        /* 모바일에서 모든 항목 강제 표시 */
+    }
+}
