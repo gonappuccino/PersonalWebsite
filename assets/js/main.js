@@ -233,18 +233,34 @@ function showAllProjects() {
 }
 
 function initPortfolioFilter() {
-  // 모바일이면 즉시 모든 프로젝트 표시
-  if (isMobile()) {
-    showAllProjects();
-    return;
-  }
-
-  // 데스크톱 필터 기능
+  const isMobile = window.innerWidth <= 768;
   const filterButtons = document.querySelectorAll('.portfolio-filter button');
   const portfolioItems = document.querySelectorAll('.portfolio-item');
 
+  // ScrollReveal 초기화 해제 함수
+  function resetScrollReveal() {
+    portfolioItems.forEach(item => {
+      sr.clean(item);  // ScrollReveal 효과 제거
+    });
+  }
+
+  if (isMobile) {
+    // 모바일: 모든 프로젝트 표시
+    portfolioItems.forEach(item => {
+      item.style.display = 'block';
+      item.style.opacity = '1';
+      item.style.visibility = 'visible';
+    });
+    return;
+  }
+
+  // 데스크톱: 필터 기능
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
+      // ScrollReveal 효과 초기화
+      resetScrollReveal();
+
+      // 활성 버튼 표시
       filterButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
 
@@ -261,25 +277,25 @@ function initPortfolioFilter() {
           item.style.visibility = 'hidden';
         }
       });
+
+      // 필터링 후 ScrollReveal 재적용
+      sr.reveal('.portfolio-item:not([style*="display: none"])', {
+        interval: 200,
+        mobile: true,
+        viewFactor: 0.3
+      });
     });
   });
 }
 
-// 페이지 로드 시 즉시 실행
-document.addEventListener('DOMContentLoaded', () => {
-  if (isMobile()) {
-    showAllProjects();
-  }
-  initPortfolioFilter();
-});
+// 페이지 로드 시 초기화
+document.addEventListener('DOMContentLoaded', initPortfolioFilter);
 
-// 리사이즈 시 즉시 실행
+// 리사이즈 시 초기화
+let resizeTimer;
 window.addEventListener('resize', () => {
-  if (isMobile()) {
-    showAllProjects();
-  } else {
-    initPortfolioFilter();
-  }
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(initPortfolioFilter, 250);
 });
 
 // 요소가 화면에 보이는지 확인하는 함수
