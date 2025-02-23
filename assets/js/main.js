@@ -219,15 +219,8 @@ function initPortfolioFilter() {
   const filterButtons = document.querySelectorAll('.portfolio-filter button');
   const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-  // 모바일 환경
   if (isMobile) {
-    // 필터 버튼 숨기기
-    const filterContainer = document.querySelector('.portfolio-filter');
-    if (filterContainer) {
-      filterContainer.style.display = 'none';
-    }
-
-    // 모든 프로젝트 표시
+    // 모바일: 모든 프로젝트 표시
     portfolioItems.forEach(item => {
       item.style.display = 'block';
       item.style.opacity = '1';
@@ -236,20 +229,7 @@ function initPortfolioFilter() {
     return;
   }
 
-  // 데스크톱 환경
-  // 필터 버튼 표시
-  const filterContainer = document.querySelector('.portfolio-filter');
-  if (filterContainer) {
-    filterContainer.style.display = 'flex';
-  }
-
-  // 초기 상태: 'all' 필터 활성화
-  const allButton = document.querySelector('[data-filter="all"]');
-  if (allButton) {
-    allButton.classList.add('active');
-  }
-
-  // 필터 기능
+  // 데스크톱: 필터 기능
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
       // 활성 버튼 표시
