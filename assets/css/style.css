@@ -1684,3 +1684,61 @@ footer {
         font-size: 0.8rem;
     }
 }
+
+/* 프로젝트 필터 스타일 수정 */
+@media screen and (max-width: 768px) {
+    .filter-btns {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 5px;
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    .filter-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        margin: 0;
+        flex: 0 1 auto;
+    }
+
+    /* 프로젝트 그리드 조정 */
+    .portfolio-items {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 10px 0;
+    }
+
+    .portfolio-item {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    /* 컨테이너 패딩 조정 */
+    .portfolio .container {
+        padding: 0 15px;
+        overflow: visible;
+    }
+
+    /* 섹션 패딩 */
+    .portfolio.section {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+}
+
+/* 더 작은 화면에 대한 추가 조정 */
+@media screen and (max-width: 480px) {
+    .filter-btns {
+        gap: 8px;
+        padding: 8px 3px;
+    }
+
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
