@@ -1965,7 +1965,7 @@ footer {
     position: relative;
     opacity: 0;
     transform: translateY(50px);
-    transition: all 0.7s ease;
+    transition: all 0.5s ease;
 }
 
 .reveal.active {
@@ -1975,16 +1975,27 @@ footer {
 
 @media screen and (max-width: 768px) {
     .reveal {
+        opacity: 0;
         transform: translateY(30px);
-        /* 모바일에서는 더 작은 이동 거리 */
         transition: all 0.5s ease;
-        /* 모바일에서는 더 빠른 애니메이션 */
+        will-change: transform, opacity;
+        /* 성능 최적화 */
     }
 
-    /* 이미 화면에 보이는 요소들은 즉시 표시 */
     .reveal.active {
         opacity: 1;
         transform: translateY(0);
+    }
+
+    /* 프로젝트 아이템 특별 처리 */
+    .portfolio-item {
+        opacity: 0;
+        transform: translateY(30px);
         transition: all 0.5s ease;
+    }
+
+    .portfolio-item.active {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

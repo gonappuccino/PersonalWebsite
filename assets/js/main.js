@@ -285,25 +285,20 @@ window.addEventListener('resize', () => {
 // 스크롤 애니메이션 함수
 function reveal() {
   const reveals = document.querySelectorAll('.reveal');
+  const windowHeight = window.innerHeight;
   const isMobile = window.innerWidth <= 768;
 
   reveals.forEach((element) => {
-    const windowHeight = window.innerHeight;
     const elementTop = element.getBoundingClientRect().top;
-    const elementVisible = 150; // 요소가 보이기 시작할 위치 조정
+    const elementVisible = 150;
 
-    if (isMobile) {
-      // 모바일에서는 더 일찍 표시되도록 조정
-      if (elementTop < windowHeight - elementVisible) {
+    // 요소가 화면 안에 들어왔는지 확인
+    if (elementTop < windowHeight - elementVisible) {
+      // 아직 active 클래스가 없는 경우에만 애니메이션 적용
+      if (!element.classList.contains('active')) {
         element.classList.add('active');
         element.style.opacity = '1';
         element.style.transform = 'translateY(0)';
-        element.style.transition = 'all 0.7s ease';
-      }
-    } else {
-      // 데스크톱에서는 기존 동작 유지
-      if (elementTop < windowHeight - elementVisible) {
-        element.classList.add('active');
       }
     }
   });
@@ -319,6 +314,6 @@ window.addEventListener('scroll', () => {
 // 페이지 로드 시 초기 실행
 document.addEventListener('DOMContentLoaded', () => {
   reveal();
-  // 약간의 지연 후 한 번 더 실행하여 초기 위치의 요소들도 확인
+  // 초기 로드 시 화면에 보이는 요소들 체크
   setTimeout(reveal, 100);
 });
