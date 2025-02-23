@@ -480,8 +480,10 @@ h3 {
 .project-filters {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 40px;
+    padding: 0 15px;
 }
 
 .filter-btn {
@@ -513,6 +515,8 @@ h3 {
     padding: 20px;
     width: 100%;
     margin: 0 auto;
+    min-height: 400px;
+    /* 최소 높이 설정 */
 }
 
 .project-box {
@@ -521,6 +525,10 @@ h3 {
     padding: 25px;
     box-shadow: 0 4px 15px var(--shadow-color);
     transition: all 0.3s ease;
+    opacity: 1;
+    transform: scale(1);
+    height: auto;
+    overflow: hidden;
 }
 
 .project-box:hover {
@@ -599,6 +607,8 @@ h3 {
     opacity: 1;
     transform: scale(1);
     transition: all 0.3s ease;
+    height: auto;
+    overflow: hidden;
 }
 
 .project-box.hide {
@@ -607,7 +617,7 @@ h3 {
     height: 0;
     padding: 0;
     margin: 0;
-    overflow: hidden;
+    pointer-events: none;
 }
 
 /* Responsive Design */
