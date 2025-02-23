@@ -1959,3 +1959,32 @@ footer {
         margin-bottom: 20px;
     }
 }
+
+/* 스크롤 애니메이션 기본 설정 */
+.reveal {
+    position: relative;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.7s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media screen and (max-width: 768px) {
+    .reveal {
+        transform: translateY(30px);
+        /* 모바일에서는 더 작은 이동 거리 */
+        transition: all 0.5s ease;
+        /* 모바일에서는 더 빠른 애니메이션 */
+    }
+
+    /* 이미 화면에 보이는 요소들은 즉시 표시 */
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.5s ease;
+    }
+}
